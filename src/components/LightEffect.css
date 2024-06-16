@@ -1,12 +1,13 @@
 /* src/components/LightEffect.css */
-.light-effect {
-    position: absolute;
-    width: 200px; /* Anpassbare Größe */
-    height: 200px; /* Anpassbare Größe */
-    border-radius: 50%;
-    pointer-events: none; /* Damit die Mausinteraktion nicht beeinträchtigt wird */
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 80%);
-    mix-blend-mode: overlay; /* Optional, um den Effekt schöner zu machen */
-    z-index: 1000; /* Sicherstellen, dass es über anderen Elementen liegt */
+:root {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: radial-gradient(circle, transparent 0%, rgba(255, 255, 255, 0.2) 100%) var(--mouse-x) var(--mouse-y) / 200px 200px no-repeat;
   }
   
