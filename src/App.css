@@ -1,5 +1,32 @@
+
 .App {
-  overflow: auto;
-  margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  padding: 20px;
+}
+
+.sticky-box {
+  background-color: #4b1616;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  position: sticky;
+  top: 60px;
+  width: 100%;
+  z-index: 1000; /* Stacking context */
+}
+
+.sticky-box.stopped {
+  position: absolute;
+  top: 460px; /* Adjust this value to match your sticky position plus 400px */
+  width: 100%;
+}
+
+.long-content {
+  height: 800px;
+  background-color: #f0f0f0;
+  margin: 20px 0;
+  border: 1px solid #ccc;
 }

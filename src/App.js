@@ -1,42 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import MainContent from './components/MainContent';
-import Quote from './components/Quote';
 
 function App() {
-  const [mousePos, setMousePos] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-
-  const handleMouseMove = (event) => {
-    setMousePos({ x: event.clientX, y: event.clientY });
-  };
-
-  const handleMouseLeave = () => {
-    setMousePos({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-  };
+  const [scrolling, setScrolling] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseleave', handleMouseLeave);
+    const handleScroll = () => {
+      if (window.scrollY > 400) { // Beispiel: Scrollen Sie 400 Pixel nach unten, bevor das sticky-Verhalten beendet wird
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
-    <div
-      className="App"
-      style={{
-        background: `radial-gradient(circle at ${mousePos.x}px ${mousePos.y}px, white, #d3d3d3)`,
-        height: '100vh',
-        width: '100vw',
-        transition: 'background 0.5s ease',
-      }}
-    >
-      <MainContent></MainContent>
-      
+    <div className="App">
+      <main>
+        <p>This is some content. Scroll down to see the effect of sticky.</p>
+        <div className={`sticky-box ${scrolling ? 'stopped' : ''}`}>
+          <h2>Sticky Box</h2>
+          <p>This box will stick to the top when you scroll past it.</p>
+        </div>
+        <div className="long-content"></div>
+        <div className="long-content"></div>
+        <div className="long-content"></div>
+        <div className="long-content"></div>
+        <div className="long-content"></div>
+      </main>
     </div>
   );
 }
 
 export default App;
+
